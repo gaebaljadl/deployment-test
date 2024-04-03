@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sojong2-app-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: sojong2-app
+  template:
+    metadata:
+      labels:
+        app: sojong2-app
+    spec:
+      containers:
+      - name: sojong2-app
+        image: hunny743456/sojong2-app:first
+        ports:
+        - containerPort: 5000
