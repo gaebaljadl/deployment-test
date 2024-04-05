@@ -7,8 +7,12 @@ import io
 
 app = Flask(__name__)
 
-# ResNet-18 모델 다운로드
-resnet18 = models.resnet18(pretrained=True)
+# 모델 생성
+resnet18 = models.resnet18(weights=None)
+
+# 로컬 가중치 파일 로드
+weights_path = '/root/.cache/torch/hub/checkpoints/resnet18-f37072fd.pth'
+resnet18.load_state_dict(torch.load(weights_path))
 resnet18.eval()
 
 # 이미지 전처리를 위한 변환 정의
