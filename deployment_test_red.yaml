@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sojong2-deployment-red
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sojong2
+  template:
+    metadata:
+      labels:
+        app: sojong2
+    spec:
+      containers:
+      - name: sojong2
+        image: hunny743456/sojong2_amd_v3:first
+        ports:
+        - containerPort: 5000
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: team
+                operator: In
+                values:
+                - red
